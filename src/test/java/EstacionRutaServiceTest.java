@@ -59,21 +59,4 @@ public class EstacionRutaServiceTest {
 
         }
     }
-
-    @Test
-    void testAddEstacionRuta() throws EntityNotFoundException, IllegalOperationException {
-        ActorEntity newActor = factory.manufacturePojo(ActorEntity.class);
-        entityManager.persist(newActor);
-
-        ActorEntity actorEntity = personajeActorService.addActor(personaje.getId(), newActor.getId());
-        assertNotNull(actorEntity);
-
-        assertEquals(newActor.getId(), actorEntity.getId());
-        assertEquals(newActor.getEstiloActoral(), actorEntity.getEstiloActoral());
-
-        ActorEntity lastActor = personajeActorService.getActor(personaje.getId(), newActor.getId());
-        assertEquals(newActor.getId(), lastActor.getId());
-        assertEquals(newActor.getEstiloActoral(), lastActor.getEstiloActoral());
-    }
-
 }
