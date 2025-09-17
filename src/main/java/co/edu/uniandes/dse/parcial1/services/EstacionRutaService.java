@@ -59,11 +59,16 @@ public class EstacionRutaService {
         log.info("Inicia proceso de borrar un ruta del estacion con id = {}", estacionId);
         Optional<EstacionEntity> estacionEntity = estacionRepository.findById(estacionId);
         if (estacionEntity.isEmpty())
-            throw new EntityNotFoundException("Estacion no encontrado");
+            throw new EntityNotFoundException("Estacion no encontrada");
 
         Optional<RutaEntity> rutaEntity = rutaRepository.findById(rutaId);
         if (rutaEntity.isEmpty())
-            throw new EntityNotFoundException("Ruta no encontrado");
+            throw new EntityNotFoundException("Ruta no encontrada");
+
+        /**
+         * if (!((rutaEntity.get().getEstaciones()).contains(estacionEntity.get())));
+            throw new IllegalOperationException("Ruta no contiene estacion");
+         */
 
         estacionEntity.get().getRutas().remove(rutaEntity.get());
         rutaEntity.get().getEstaciones().remove(estacionEntity.get());
